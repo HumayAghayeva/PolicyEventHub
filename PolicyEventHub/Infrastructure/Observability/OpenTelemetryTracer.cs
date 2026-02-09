@@ -1,4 +1,5 @@
 ﻿using PolicyEventHub.Applications.Observability;
+using PolicyEventHub.Infrastructure.Utility;
 using System.Diagnostics;
 
 namespace PolicyEventHub.Infrastructure.Observability

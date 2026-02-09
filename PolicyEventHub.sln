@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PolicyEventHub", "PolicyEve
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{788F7A8E-7B97-4E05-B159-5C44267232C4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolicyHubEvent.Test", "PolicyHubEvent.Test\PolicyHubEvent.Test.csproj", "{35381BE2-06E5-43F1-9257-675442BE58FA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,12 +19,17 @@ Global
 		{EDCAA2CA-B9EC-4BCE-B927-3FF21BC74CCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDCAA2CA-B9EC-4BCE-B927-3FF21BC74CCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EDCAA2CA-B9EC-4BCE-B927-3FF21BC74CCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35381BE2-06E5-43F1-9257-675442BE58FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35381BE2-06E5-43F1-9257-675442BE58FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35381BE2-06E5-43F1-9257-675442BE58FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35381BE2-06E5-43F1-9257-675442BE58FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{EDCAA2CA-B9EC-4BCE-B927-3FF21BC74CCE} = {788F7A8E-7B97-4E05-B159-5C44267232C4}
+		{35381BE2-06E5-43F1-9257-675442BE58FA} = {788F7A8E-7B97-4E05-B159-5C44267232C4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B3CA0A90-A7E4-47EA-9F17-118682889B29}

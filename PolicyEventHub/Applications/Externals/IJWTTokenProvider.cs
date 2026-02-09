@@ -1,4 +1,6 @@
-﻿namespace PolicyEventHub.Applications.Externals
+﻿using PolicyEventHub.Applications.DTOs;
+
+namespace PolicyEventHub.Applications.Externals
 {
     public interface IJWTTokenProvider
     {

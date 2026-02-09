@@ -1,0 +1,6 @@
+@PolicyEventHub_HostAddress = http://localhost:5251
+
+GET {{PolicyEventHub_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

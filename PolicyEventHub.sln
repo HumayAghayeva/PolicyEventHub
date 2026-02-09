@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolicyEventHub", "PolicyEventHub\PolicyEventHub.csproj", "{EDCAA2CA-B9EC-4BCE-B927-3FF21BC74CCE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PolicyEventHub", "PolicyEventHub\PolicyEventHub.csproj", "{EDCAA2CA-B9EC-4BCE-B927-3FF21BC74CCE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{788F7A8E-7B97-4E05-B159-5C44267232C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,6 +20,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EDCAA2CA-B9EC-4BCE-B927-3FF21BC74CCE} = {788F7A8E-7B97-4E05-B159-5C44267232C4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B3CA0A90-A7E4-47EA-9F17-118682889B29}

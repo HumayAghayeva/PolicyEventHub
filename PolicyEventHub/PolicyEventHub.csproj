@@ -17,7 +17,6 @@
     <Folder Include="Framework\Configurations\" />
     <Folder Include="Framework\Filters\" />
     <Folder Include="Framework\HealthCheck\" />
-    <Folder Include="Framework\Middlewares\" />
     <Folder Include="Framework\Swagger\Examples\" />
     <Folder Include="Infrastructure\Externals\" />
   </ItemGroup>

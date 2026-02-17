@@ -1,4 +1,4 @@
-﻿namespace PolicyEventHub.Applications.Diagnostics
+﻿namespace PolicyEventHub.Applications.Abstractions.Diagnostics
 {
     public interface ICorrelationIdAccessor
     {

@@ -6,7 +6,7 @@ using System.Text;
 using PolicyEventHub.Extensions;
 using HttpLoggingOptions = PolicyEventHub.Framework.Configurations.HttpLoggingOptions;
 
-namespace PolicyEventHub.Framework.Middlewares
+namespace PolicyEventHub.Framework.Middleware
 {
     public class RequestResponseLoggingMiddleware
     {

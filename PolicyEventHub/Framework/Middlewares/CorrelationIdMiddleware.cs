@@ -1,6 +1,6 @@
 ﻿using PolicyEventHub.Framework.Constants;
 
-namespace PolicyEventHub.Framework.Middlewares
+namespace PolicyEventHub.Framework.Middleware
 {
     public class CorrelationIdMiddleware
         {

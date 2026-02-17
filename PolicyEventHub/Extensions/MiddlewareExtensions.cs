@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.HttpLogging;
-using PolicyEventHub.Framework.Middlewares;
+using PolicyEventHub.Framework.Middleware;
 using PolicyEventHub.Middlewares;
 
 namespace PolicyEventHub.Extensions
@@ -8,6 +8,7 @@ namespace PolicyEventHub.Extensions
     {
         public static IApplicationBuilder UseDomainValidationExceptionHandling(this IApplicationBuilder app)
          => app.UseMiddleware<DomainValidationExceptionMiddleware>();
+
         public static IApplicationBuilder UseGlobalErrorHandling(this IApplicationBuilder app)
             => app.UseMiddleware<ErrorHandlingMiddleware>();
 

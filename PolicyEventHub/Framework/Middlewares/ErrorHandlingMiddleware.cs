@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http.Json;
 using Microsoft.Extensions.Options;
+using PolicyEventHub.Extensions;
 using PolicyEventHub.Framework.ExceptionHandlers;
-using PolicyEventHub.Framework.Exceptions;
 using PolicyEventHub.Models.Api;
 using System.Text.Json;
 
-namespace PolicyEventHub.Framework.Middlewares
+namespace PolicyEventHub.Middlewares
 {
     public class ErrorHandlingMiddleware
     {
@@ -61,10 +61,10 @@ namespace PolicyEventHub.Framework.Middlewares
 
                     var apiResponse = ApiResponse<EmptyData>.Failure(
                         code: "INTERNAL_ERROR",
-                        message: "Internal Server Error",
+                        message: ex.Message,
                         details: new[]
                         {
-                        new ErrorDetail { Issue = "UnexpectedError" }
+                     new ErrorDetail { Issue = "UnexpectedError" }
                         },
                         correlationId: correlationId);
 

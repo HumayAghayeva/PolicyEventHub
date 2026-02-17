@@ -1,4 +1,5 @@
-﻿using DataBridge.API.Services;
+﻿using DataBridge.API.Abstraction;
+using DataBridge.API.Services;
 
 namespace DataBridge.API
 {
@@ -6,7 +7,9 @@ namespace DataBridge.API
     {
         public static IServiceCollection AddApplicationLayer(this IServiceCollection services)
         {
-     
+
+            //services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
+
            services.Scan(scan => scan
     .FromAssemblies(typeof(CompulsoryCanceledPolicyService).Assembly)
     .AddClasses(c => c.InNamespaces("DataBridge.API"))

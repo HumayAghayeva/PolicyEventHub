@@ -1,4 +1,6 @@
 
+using PolicyEventHub.Extensions;
+
 namespace PolicyEventHub
 {
     public class Program
@@ -16,16 +18,19 @@ namespace PolicyEventHub
 
             var app = builder.Build();
 
+            app.UseCorrelationId();
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+            app.UseGlobalErrorHandling();
 
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
+            app.UseRouting();
 
 
             app.MapControllers();

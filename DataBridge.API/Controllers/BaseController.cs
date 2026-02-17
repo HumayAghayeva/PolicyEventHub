@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using DataBridge.API.Abstraction;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DataBridge.API.Controllers
@@ -8,13 +9,13 @@ namespace DataBridge.API.Controllers
     [ApiController]
     public class BaseController<T> : ControllerBase
     {
-        //private IAppLogger<T> _logger;
-        //protected IAppLogger<T> Logger
-        //{
-        //    get
-        //    {
-        //        return _logger ?? (_logger = HttpContext.RequestServices.GetService<IAppLogger<T>>());
-        //    }
-        //}
+        private IAppLogger<T> _logger;
+        protected IAppLogger<T> Logger
+        {
+            get
+            {
+                return _logger ?? (_logger = HttpContext.RequestServices.GetService<IAppLogger<T>>());
+            }
+        }
     }
 }

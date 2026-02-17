@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Connections;
+﻿using Dapper;
+using Microsoft.AspNetCore.Connections;
 using PolicyEventHub.Applications.Abstractions.Persistence;
 using System.Data;
 

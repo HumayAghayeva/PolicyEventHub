@@ -9,6 +9,5 @@ namespace PolicyEventHub.Applications.Domain.Abstractions
         Task<string> GetIframeUrlUnregisteredAsync(int id, CancellationToken cancellationToken);
         Task UpdateCancelledCompulsoryPolicyAsync(int id, CancelledCompulsoryPolicyUpdateDto cancelledCompulsoryPolicyUpdateDto, CancellationToken cancellationToken);
 
-      
     }
 }

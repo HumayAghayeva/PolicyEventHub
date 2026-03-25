@@ -1,6 +1,6 @@
 ﻿namespace PolicyEventHub.Applications.DTOs
 {
-    public record CompulsoryMotorSaleDto
+    public class CompulsoryMotorSaleDto
     {
         public string Phone { get; init; }
         public string Email { get; init; }

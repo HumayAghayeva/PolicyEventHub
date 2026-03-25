@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.WebUtilities;
+﻿using MassTransit.Middleware;
+using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using PolicyEventHub.Applications.Domain.Abstractions;
@@ -18,6 +19,7 @@ namespace PolicyEventHub.Infrastructure.Services
     public class LegacyOSAGODataRetriver : ILegacyOSAGODataRetriver
     {
         private readonly ILogger<LegacyOSAGODataRetriver> _logger;
+        private readonly IEventPublisher _eventPublisher;
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly AsyncRetryPolicy<HttpResponseMessage> _retryPolicy;
         private string _jwtToken = string.Empty;
@@ -33,6 +35,7 @@ namespace PolicyEventHub.Infrastructure.Services
             IHttpClientFactory httpClientFactory,
             IOptions<HttpRetryOptions> retryOptions,
             IOptions<GatewayOptions> gatewayOptions,
+            IEventPublisher eventPublisher,
             IJWTTokenProvider tokenProvider,
             IOptions<InsureIframeServiceSettings> insureIframeSettingOptions,
             IOptions<CompulsoryMotorSaleSettings> compulsoryMotorSaleSettings,
@@ -48,6 +51,7 @@ namespace PolicyEventHub.Infrastructure.Services
             _insureIframeSettingOptions = insureIframeSettingOptions.Value;
             _compulsoryMotorSaleDtoValidator = compulsoryMotorSaleDtoValidator;
             var retry = retryOptions.Value;
+            _eventPublisher = eventPublisher;
             _tracer = tracer;
             _metrics = metrics;
 
@@ -170,6 +174,23 @@ namespace PolicyEventHub.Infrastructure.Services
         #endregion
 
         #region GetCancelledCompulsoryPoliciesCountAsync
+        private async Task PublishDecisionAsync(OutboxMessage record, CancellationToken ct)
+        {    
+
+            var @event = System.Text.Json.JsonSerializer.Deserialize<CompulsoryMotorSaleDto>(record.Payload)
+                ?? throw new ApplicationException(
+                    $"Failed to deserialize {nameof(CompulsoryMotorSaleDto)} from outbox");
+
+            await _eventPublisher.PublishAsync(
+                @event,
+                opts =>
+                {
+                   // opts.CorrelationId = _correlation.CorrelationId;
+                    //opts.Destination = @event.Destination;
+                },
+                ct
+            ).ConfigureAwait(false);
+        }
         private async Task<int> GetCancelledCompulsoryPoliciesCountAsync(
             OSAGORequestDto request,
             string token,
@@ -265,7 +286,7 @@ namespace PolicyEventHub.Infrastructure.Services
                         $"Request failed with status code {response.StatusCode}. Response: {responseText}");
                 }
 
-                var result = JsonConvert.DeserializeObject<ApiResponse<OSAGOResponseDto>>(responseText);
+                var result = JsonConvert.DeserializeObject<Models.Api.ApiResponse<OSAGOResponseDto>>(responseText);
 
                 if (result == null)
                     throw new ApplicationException($"Response from InsureIframe API. Endpoint: {finalUrl}");
@@ -353,7 +374,7 @@ namespace PolicyEventHub.Infrastructure.Services
                     $"Request to API '{apiUrl}' failed. StatusCode: {response.StatusCode}, Response: {responseBody}");
             }
 
-            var result = JsonConvert.DeserializeObject<ApiResponse<string>>(responseBody);
+            var result = JsonConvert.DeserializeObject<Models.Api.ApiResponse<string>>(responseBody);
 
             if (result?.Data == null)
             {
@@ -368,7 +389,7 @@ namespace PolicyEventHub.Infrastructure.Services
         #region UpdateCancelledCompulsoryPolicyAsync
         public async Task UpdateCancelledCompulsoryPolicyAsync(
          int id,
-         CancelledCompulsoryPolicyUpdateDto cancelledCompulsoryPolicyUpdateDto,
+        CancelledCompulsoryPolicyUpdateDto cancelledCompulsoryPolicyUpdateDto,
          CancellationToken cancellationToken)
         {
             _logger.LogInformation(

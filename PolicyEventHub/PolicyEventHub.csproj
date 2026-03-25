@@ -36,4 +36,8 @@
     <Folder Include="Infrastructure\Externals\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DataBridge.API\DataBridge.API.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -34,9 +34,6 @@ This project is built using modern .NET technologies and follows clean architect
 - **Entity Framework Core**  
   ORM tool for database interactions.
 
-- **MediatR**  
-  Enables decoupled communication between application components using the mediator pattern.
-
 - **AutoMapper**  
   Simplifies object-to-object mapping between domain models and DTOs.
 
@@ -63,10 +60,18 @@ This project is built using modern .NET technologies and follows clean architect
 
 The project follows **Clean Architecture** principles:
 
-- Domain Layer — business rules and core entities  
-- Application Layer — use cases and business logic  
-- Infrastructure Layer — external integrations and persistence  
-- API Layer — endpoints and request handling  
+Domain
+ └── Core business rules and entities
+
+Application
+ └── Use cases, commands, queries, business workflows
+
+Infrastructure
+ └── Database access, messaging, external integrations
+
+API
+ └── HTTP endpoints and request handling
+
 
 ---
 
